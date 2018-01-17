@@ -19,15 +19,22 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.create!(user_params)
-    json_response(@user, :created)
+    @user = User.new(user_params)
+    if @user.save
+    	render :json => @user, status: :created
+    else
+    	render :json => @user.errors.as_json(full_messages: true), status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    @user.update(user_params)
-    render :show, status: :ok, location: @user
+    if @user.update(user_params)
+    	render :json => @user, status: :created
+    else
+    	render :json => @user.errors.as_json(full_messages: true), status: :unprocessable_entity
+    end
   end
 
   # DELETE /users/1
