@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    json_response(@user)
+    render :json => @user, status: :ok
   end
 
   # POST /users
