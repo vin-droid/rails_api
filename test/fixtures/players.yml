@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  state_name: MyString
+  country_name: MyString
+  game: MyString
+
+two:
+  first_name: MyString
+  last_name: MyString
+  state_name: MyString
+  country_name: MyString
+  game: MyString

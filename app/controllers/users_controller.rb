@@ -52,7 +52,9 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
+    	binding.pry
       params.require(:user).permit(:username, :status, :age, :city, :avatar_url)
+      params
     end
 
     def locate_collection
