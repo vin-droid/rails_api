@@ -5,12 +5,13 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @players = Player.all
-    render json:  @players, root: :players, meta: { code: "200", message: 'Successfully fetched employees list'}, meta_key: "meta", status: 200
+    render json:  @players, root: :players, meta: {message: 'Successfully fetched player list'}, meta_key: "meta", status: 200
   end
 
   # GET /players/1
   # GET /players/1.json
   def show
+     render json: @player, root: :player, meta: { message: 'Successfully fetched player profile'}, meta_key: "meta", status: 200
   end
 
   # POST /players
@@ -19,9 +20,14 @@ class PlayersController < ApplicationController
     @player = Player.new(player_params)
 
     if @player.save
-      render :show, status: :created, location: @player
+      render json:  @player,
+       root: :player, 
+       meta: {message: 'Player has been successfully created.'}, 
+       meta_key: "meta",
+       location: @player,
+       status: 200
     else
-      render json: @player.errors, status: :unprocessable_entity
+      render json: { errors: @player.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
@@ -29,9 +35,14 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1.json
   def update
     if @player.update(player_params)
-      render :show, status: :ok, location: @player
+      render json:  @player,
+       root: :player, 
+       meta: {message: 'Player has been successfully updated.'}, 
+       meta_key: "meta",
+       location: @player,
+       status: 200
     else
-      render json: @player.errors, status: :unprocessable_entity
+      render json: { errors: @player.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
